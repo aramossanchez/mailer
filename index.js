@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 
 
+require('dotenv').config();
 app.use(express.json());
 
 
@@ -10,9 +11,9 @@ app.use(express.json());
 const { mailer } = require('./controller/mailer.controller');
 
 // ROUTES
-app.post('/mailer', mailer);
+app.post('/mailer-carmina', mailer);
 
 // START SERVER
 app.listen(port, () => {
-  console.log(`nodemailerProject is listening at http://localhost:${port}`);
+  console.log(`mailer is listening at :${port}`);
 });
