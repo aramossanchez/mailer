@@ -39,7 +39,7 @@ function mailer(req, res) {
   });
 
   if (process.env.MAIL_USERNAME && process.env.MAIL_TO_SEND) {
-    res.status(200).send(`mails were succeed ${process.env.MAIL_USERNAME} ${process.env.MAIL_TO_SEND}`);    
+    res.status(200).send("mails were succeed");    
   } else {
     res.status(500).send("environment variables not found");
   }
