@@ -12,7 +12,7 @@ const { mailer } = require('./controller/mailer.controller');
 
 // ROUTES
 app.get('/mailer-carmina', (req, res) => {
-  res.status(200).send("test ok");
+  res.status(200).send("✔️ ready to mailing ✉️🚀");
 });
 app.post('/mailer-carmina', mailer);
 
@@ -20,3 +20,5 @@ app.post('/mailer-carmina', mailer);
 app.listen(port, () => {
   console.log(`mailer is listening at :${port}`);
 });
+
+module.exports = { app };
