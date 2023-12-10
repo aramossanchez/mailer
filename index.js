@@ -11,6 +11,9 @@ app.use(express.json());
 const { mailer } = require('./controller/mailer.controller');
 
 // ROUTES
+app.get('/mailer-carmina', (req, res) => {
+  res.status(200).send("test ok");
+});
 app.post('/mailer-carmina', mailer);
 
 // START SERVER
