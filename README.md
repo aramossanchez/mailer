@@ -1,3 +1,3 @@
 # mailer
 
-## deployado en Vercel (https://mailer-gqt9sctz4-aramossanchez.vercel.app)
+## deployado en Vercel (https://mailer-2vwiivvvt-aramossanchez.vercel.app)
