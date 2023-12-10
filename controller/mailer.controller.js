@@ -17,7 +17,7 @@ function mailer(req, res) {
 
   transporter.sendMail(mailOptionsToCarmina, (error, info) => {
     if (error) {
-      console.log(error);
+      res.status(500).send(error);
       return console.log(error);
     }
     console.log('mail to Carmina was succeed ->', info.messageId);
@@ -34,7 +34,7 @@ function mailer(req, res) {
 
   transporter.sendMail(mailOptionsToUser, (error, info) => {
     if (error) {
-      console.log(error);
+      res.status(500).send(error);
       return console.log(error);
     }
     console.log('mail to User was succeed ->', info.messageId);
