@@ -3,6 +3,10 @@ import "https://deno.land/std@0.209.0/dotenv/load.ts";
 
 export const mailer = (req, res) => {
 
+  let mailToCarmina = false;
+  let mailToUser = false;
+  let message = '';
+
   // MAIL TO CARMINA
   const mailOptionsToCarmina = {
     from: Deno.env.get('MAIL_USERNAME'),
@@ -16,11 +20,11 @@ export const mailer = (req, res) => {
     }]
   };
 
-  transporter.sendMail(mailOptionsToCarmina, (error, info) => {
+  transporter.sendMail(mailOptionsToCarmina, (error) => {
     if (error) {
       return console.log(error);
     }
-    console.log('mail to Carmina was succeed ->', info.messageId);
+    mailToCarmina = true;
   });
 
   // MAIL TO USER
@@ -32,17 +36,25 @@ export const mailer = (req, res) => {
     // html: '<b>Contenido del correo...</b>' // Puedes usar HTML si lo prefieres
   };
 
-  transporter.sendMail(mailOptionsToUser, (error, info) => {
+  transporter.sendMail(mailOptionsToUser, (error) => {
     if (error) {
       return console.log(error);
     }
-    console.log('mail to User was succeed ->', info.messageId);
+    mailToUser = true;
   });
 
-  console.log(Deno.env.get('MAIL_USERNAME'));
-  console.log(Deno.env.get('MAIL_TO_SEND'));
   if (Deno.env.get('MAIL_USERNAME') && Deno.env.get('MAIL_TO_SEND') ){
-    res.status(200).send("mails were succeed");    
+    if (!mailToCarmina) {
+      message = message + " ❌ Mail to Carmina FAILED ❌ ";
+    }
+    if (!mailToUser) {
+      message = message + " ❌ Mail to User FAILED ❌ ";
+    }
+    if (mailToCarmina && mailToUser) {
+      res.status(200).send("Mails were succeed ✉️🚀");      
+    } else {
+      res.status(500).send(message);
+    }
   } else {
     res.status(500).send("environment variables not found");
   }

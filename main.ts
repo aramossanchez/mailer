@@ -1,6 +1,8 @@
 import express from 'npm:express@4.18.2';
 const app = express();
 
+const port = Deno.env.get('PORT');
+
 // PREPARED TO GET BODY FOR PARAMS
 app.use(express.json());
 
@@ -9,8 +11,8 @@ app.use(express.json());
 import {mailer} from './controller/mailer.controller.ts';
 
 // START SERVER
-app.listen(3000, () => {
-  console.log(`mailer is listening at :${3000}`);
+app.listen(port, () => {
+  console.log(`mailer is listening at :${port}`);
 });
 
 // ROUTES
