@@ -1,6 +1,9 @@
 import express from 'npm:express@4.18.2';
-import * as _mod from 'https://deno.land/std@0.209.0/dotenv/mod.ts';
 const app = express();
+
+// PREPARED TO GET BODY FOR PARAMS
+app.use(express.json());
+
 
 // FUNCTIONS
 import {mailer} from './controller/mailer.controller.ts';
@@ -14,7 +17,7 @@ app.listen(3000, () => {
 
 // ** /mailer-carmina **
 
-app.get('/mailer-carmina', (_req, res) => {
+app.get('/mailer-carmina', (req, res) => {
   res.status(200).send("✔️ ready to mailing ✉️🚀");
 });
 

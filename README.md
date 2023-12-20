@@ -1,6 +1,6 @@
 # mailer
 
-## deployado en deno deploy (https://mailer-2vwiivvvt-aramossanchez.vercel.app)
+## deployado en deno deploy (https://free-eel-61-15q370t55c5c.deno.dev)
 
 ## comando para ejecutar en local: deno run -A main.ts
 
