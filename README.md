@@ -1,6 +1,8 @@
 # mailer
 
-## deployado en Vercel (https://mailer-2vwiivvvt-aramossanchez.vercel.app)
+## deployado en deno deploy (https://mailer-2vwiivvvt-aramossanchez.vercel.app)
+
+## comando para ejecutar en local: deno run -A main.ts
 
 ## Variables de entorno que hay que configurar:
 MAIL_HOST=
