@@ -1,7 +1,7 @@
 import { transporter } from '../service/mailer.service.ts';
 import "https://deno.land/std@0.209.0/dotenv/load.ts";
 
-export const mailer = (req, res) => {
+export const mailer = async (req, res) => {
 
   let mailToCarmina = true;
   let mailToUser = true;
@@ -20,12 +20,13 @@ export const mailer = (req, res) => {
     }]
   };
 
-  transporter.sendMail(mailOptionsToCarmina, (error) => {
-    if (error) {
-      mailToCarmina = false;
-      console.log(error);
-    }
-  });
+  try {
+    await transporter.sendMail(mailOptionsToCarmina);
+  } catch (error) {
+    mailToCarmina = false;
+    message = message + ' ❌ Mail to Carmina failed ❌ ';
+    console.error(error);
+  }
 
   // MAIL TO USER
   const mailOptionsToUser = {
@@ -36,12 +37,13 @@ export const mailer = (req, res) => {
     // html: '<b>Contenido del correo...</b>' // Puedes usar HTML si lo prefieres
   };
 
-  transporter.sendMail(mailOptionsToUser, (error) => {
-    if (error) {
-      mailToUser = false;
-      console.log(error);
-    }
-  });
+  try {
+    await transporter.sendMail(mailOptionsToUser)
+  } catch (error) {
+    mailToUser = false;
+    message = message + ' ❌ Mail to User failed ❌ ';
+    console.error(error);
+  }
 
   if (Deno.env.get('MAIL_USERNAME') && Deno.env.get('MAIL_TO_SEND') ){
     if (mailToCarmina && mailToUser) {
