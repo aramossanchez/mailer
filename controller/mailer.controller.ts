@@ -3,8 +3,8 @@ import "https://deno.land/std@0.209.0/dotenv/load.ts";
 
 export const mailer = (req, res) => {
 
-  let mailToCarmina = false;
-  let mailToUser = false;
+  let mailToCarmina = true;
+  let mailToUser = true;
   let message = '';
 
   // MAIL TO CARMINA
@@ -22,9 +22,9 @@ export const mailer = (req, res) => {
 
   transporter.sendMail(mailOptionsToCarmina, (error) => {
     if (error) {
-      return console.log(error);
+      mailToCarmina = false;
+      console.log(error);
     }
-    mailToCarmina = true;
   });
 
   // MAIL TO USER
@@ -38,18 +38,12 @@ export const mailer = (req, res) => {
 
   transporter.sendMail(mailOptionsToUser, (error) => {
     if (error) {
-      return console.log(error);
+      mailToUser = false;
+      console.log(error);
     }
-    mailToUser = true;
   });
 
   if (Deno.env.get('MAIL_USERNAME') && Deno.env.get('MAIL_TO_SEND') ){
-    if (!mailToCarmina) {
-      message = message + " ❌ Mail to Carmina FAILED ❌ ";
-    }
-    if (!mailToUser) {
-      message = message + " ❌ Mail to User FAILED ❌ ";
-    }
     if (mailToCarmina && mailToUser) {
       res.status(200).send("Mails were succeed ✉️🚀");      
     } else {
