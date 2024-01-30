@@ -1,0 +1,5 @@
+const getMailToUser = () => {
+  const mailToUser = `<div style='width: 100%; display: flex; flex-direction: row; align-items: start; justify-content: center;'><div style='width: 400px; border-radius: 10px; box-shadow: 2px 2px 8px 2px rgb(192, 192, 192);'><h1 style='border-radius: 10px 10px 0 0; margin: 0; padding: 10px 0 10px 0; font-size: 20px; font-weight: 600; text-align: center; background-color: #72846F; color: #E5E5DC;'>Correo recibido correctamente</h1><div style='padding: 20px 10px; background-color: #E5E5DC;'><p style='margin-top: 15px; width: 100%; text-align: center;'>Ya he recibido tu mensaje. Te responderé a la mayor brevedad posible.</p><p style='margin-top: 30px; font-weight: bold; width: 100%; text-align: center; font-size: 20px;'>¡Muchas gracias por tu confianza!</p></div><div style='width: 100%; background-color: #72846F; display: flex; flex-direction: row; justify-content: center; padding-top: 10px; padding-bottom: 10px; border-radius: 0 0 10px 10px;'><img src='cid:logo' alt='Logo'></div></div></div>`;
+  return mailToUser;
+}
+export default getMailToUser;

@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  mailer:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - MAIL_HOST=smtp-es.securemail.pro
+      - MAIL_PORT=465
+      - MAIL_SECURE=SSL
+      - MAIL_USERNAME=contactoweb@carminazamora.com
+      - MAIL_PASSWORD=X7m1@3Pi
+      - MAIL_TO_SEND=armandoramossanchez@gmail.com
+      - PORT=8000

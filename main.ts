@@ -29,7 +29,7 @@ app.get('/mailer-carmina', (req, res) => {
     !Deno.env.get('MAIL_TO_SEND') ||
     !Deno.env.get('PORT')
   ) {
-    res.status(200).send("❌ - some environment variable is missing - ❌");
+    res.status(500).send("❌ - some environment variable is missing - ❌");
   } else {
     res.status(200).send("✔️ - ready to ✉️🚀 - ✔️");
   }
