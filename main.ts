@@ -8,11 +8,11 @@ app.use(express.json());
 
 
 // FUNCTIONS
-import {mailer} from './controller/mailer.controller.ts';
+import { mailer } from './controller/mailer.controller.ts';
 
 // START SERVER
 app.listen(port, () => {
-  console.log(`mailer is listening at :${port}`);
+  console.log(`✔️ ready to mailing ✉️🚀 - mailer is listening at :${port}`);
 });
 
 // ROUTES
@@ -20,7 +20,19 @@ app.listen(port, () => {
 // ** /mailer-carmina **
 
 app.get('/mailer-carmina', (req, res) => {
-  res.status(200).send("✔️ ready to mailing ✉️🚀");
+  if (
+    !Deno.env.get('MAIL_HOST') ||
+    !Deno.env.get('MAIL_PORT') ||
+    !Deno.env.get('MAIL_SECURE') ||
+    !Deno.env.get('MAIL_USERNAME') ||
+    !Deno.env.get('MAIL_PASSWORD') ||
+    !Deno.env.get('MAIL_TO_SEND') ||
+    !Deno.env.get('PORT')
+  ) {
+    res.status(200).send("❌ - some environment variable is missing - ❌");
+  } else {
+    res.status(200).send("✔️ - ready to ✉️🚀 - ✔️");
+  }
 });
 
 app.post('/mailer-carmina', mailer);
